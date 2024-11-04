@@ -1,0 +1,121 @@
+{% extends "blog/master.html" %}
+
+{% block title %}
+  My Blog | Admin Dashboard | Users
+{% endblock %}
+
+{% block content %}
+<div class="flex h-screen bg-gray-100">
+  <!-- Sidebar -->
+  <div id="sidebar" class="w-64 bg-gray-800 text-white lg:block">
+    <div class="p-4 font-bold text-lg text-center border-b border-gray-700">
+      Admin Dashboard
+    </div>
+    <nav class="mt-5">
+      <!-- <a href="{% url 'dashboard' %}" class="block px-4 py-2 mb-1 text-white rounded-lg transition duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-blue-500 hover:to-teal-500 hover:scale-105 hover:shadow-lg hover:shadow-blue-400">
+        Dashboard
+      </a> -->
+      <a href="{% url 'users' %}" class="block px-4 py-2 mb-1 text-white rounded-lg transition duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-blue-500 hover:to-teal-500 hover:scale-105 hover:shadow-lg hover:shadow-blue-400">
+        Users
+      </a>
+      <a href="{% url 'dashboard' %}" class="block px-4 py-2 mb-1 text-white rounded-lg transition duration-300 ease-in-out transform hover:bg-gradient-to-r hover:from-blue-500 hover:to-teal-500 hover:scale-105 hover:shadow-lg hover:shadow-blue-400">
+        Blogs
+      </a>
+    </nav>
+  </div>
+
+  <!-- Main content -->
+  <div class="flex-1 flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-white shadow p-4 flex justify-between">
+      <div>
+        <button id="toggleSidebar" class="lg:hidden text-gray-700 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+        <span class="text-xl font-semibold">Dashboard</span>
+      </div>
+      <div>
+        {% if user.is_authenticated %}
+          <div class="relative inline-block text-left">
+            <span id="username-text" class="cursor-pointer text-gray-950 bg-white hover:bg-gray-200 px-4 py-2 rounded-lg text-xl font-bold">
+              Hi, {{ user.username }}!
+            </span>
+            <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="username-text">
+              <div class="py-1">
+                <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Log Out</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="p-6 bg-white flex-grow">
+      <div class="flex items-center justify-between mb-10">
+        <h2 class="text-4xl font-bold">Users</h2>
+      </div>
+
+      <!-- Stats Boxes -->
+      <div class="flex mb-10">
+        <div class="flex-1 bg-gray-800 text-white p-6 rounded-lg shadow-lg mx-10">
+          <h3 class="text-2xl font-semibold mb-2">Blogs</h3>
+          <p class="text-4xl font-bold">{{ blog_count }}</p>
+        </div>
+        <div class="flex-1 bg-gray-800 text-white p-6 rounded-lg shadow-lg mx-10">
+          <h3 class="text-2xl font-semibold mb-2">Users</h3>
+          <p class="text-4xl font-bold">{{ user_count }}</p>
+        </div>
+      </div>
+
+      <!-- Table displaying users -->
+      <div class="overflow-x-auto">
+        <table class="w-full bg-white border rounded-lg shadow-lg">
+          <thead class="bg-gray-800 text-white">
+            <tr>
+              <th class="py-3 px-6 text-left">Username</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            {% for user in users %}
+            <tr class="border-b">
+              <td class="py-3 px-6 font-semibold">{{ user.username }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td class="py-3 px-6 text-center" colspan="1">No users found</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Script to toggle sidebar on mobile
+  document.getElementById('toggleSidebar').addEventListener('click', function() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
+  });
+
+  // Toggle dropdown visibility when clicking username
+  document.getElementById('username-text').addEventListener('click', function() {
+    var dropdown = document.getElementById('dropdown-menu');
+    dropdown.classList.toggle('hidden');
+  });
+
+  // Hide dropdown if clicked outside of the dropdown or username
+  document.addEventListener('click', function(event) {
+    var dropdown = document.getElementById('dropdown-menu');
+    var usernameText = document.getElementById('username-text');
+    
+    if (!usernameText.contains(event.target) && !dropdown.contains(event.target)) {
+      dropdown.classList.add('hidden');
+    }
+  });
+</script>
+{% endblock %}

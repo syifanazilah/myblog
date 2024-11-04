@@ -1,0 +1,174 @@
+{% extends "blog/master.html" %}
+
+{% block title %}
+  MyBlog | Home
+{% endblock %}
+
+{% block content %}
+  
+    <nav class="border-gray-200 bg-gray-900 sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" /> -->
+            <span class="self-center text-2xl font-bold whitespace-nowrap dark:text-white">MyBlog</span>
+        </a>
+
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mx-1 text-center"><a href="{% url 'login' %}">Log In</a></button>
+            <button type="button" class="text-gray-900 bg-white hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mx-1 text-center"><a href="{% url 'register' %}">Register</a></button>
+
+            <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+            </svg>
+        </button>
+        </div>
+
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+        <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+            <a href="/" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+            </li>
+            <li>
+            <a href="#" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+            </li>
+            <li>
+            <a href="{% url 'post_list' %}" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blogs</a>
+            </li>
+        </ul>
+        </div>
+        </div>
+    </nav>
+  
+  <!-- Main Hero Section -->
+  <div class="bg-cover bg-center h-screen">
+    <div class="flex items-center justify-center h-full bg-gradient-to-b from-blue-500 to-purple-600">
+      <div class="text-center text-white px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl sm:text-6xl font-extrabold mb-6 animate-bounce">Welcome to MyBlog</h1>
+        <p id="typewriter" class="text-xl sm:text-2xl font-semibold mb-10">"A Journey of Stories, Inspiration, and Ideas"</p>
+        <a href="{% url 'post_list' %}" class="px-6 sm:px-8 py-3 sm:py-3 bg-gray-900 text-white font-semibold rounded-lg shadow-lg hover:bg-gray-800 transition ease-in-out duration-300">
+          Explore Blogs
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="py-12 sm:py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center text-3xl sm:text-4xl font-bold text-gray-800 mb-8 sm:mb-12">Why You'll Love MyBlog</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Feature 1 -->
+        <div class="text-center">
+          <div class="p-6 sm:p-8 bg-white shadow-lg rounded-lg hover:shadow-2xl transition ease-in-out duration-300 cursor-pointer">
+            <svg class="w-12 sm:w-16 h-12 sm:h-16 mx-auto text-blue-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20v-6m0 0V4m0 10l6-6m-6 6L6 8"></path>
+            </svg>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-3">Inspiring Content</h3>
+            <p class="text-gray-600">Our blog is filled with stories that inspire and spark creativity.</p>
+          </div>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="text-center">
+          <div class="p-6 sm:p-8 bg-white shadow-lg rounded-lg hover:shadow-2xl transition ease-in-out duration-300 cursor-pointer">
+            <svg class="w-12 sm:w-16 h-12 sm:h-16 mx-auto text-blue-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+            </svg>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-3">User Friendly</h3>
+            <p class="text-gray-600">Easy to navigate with a clean and elegant design for seamless browsing.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="text-center">
+          <div class="p-6 sm:p-8 bg-white shadow-lg rounded-lg hover:shadow-2xl transition ease-in-out duration-300 cursor-pointer">
+            <svg class="w-12 sm:w-16 h-12 sm:h-16 mx-auto text-blue-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 0l6-6M6 12l6 6"></path>
+            </svg>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-3">Updated Regularly</h3>
+            <p class="text-gray-600">Fresh content is posted regularly to keep you engaged and informed.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+    <footer class="shadow bg-gray-900">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" /> -->
+                    <span class="self-center text-2xl font-bold whitespace-nowrap dark:text-white">MyBlog</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <a href="/" class="hover:underline me-4 md:me-6">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="post/" class="hover:underline me-4 md:me-6">Blogs</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">2024 <a href="" class="hover:underline">MyBlog</a> | All Rights Reserved.</span>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const words = ["A Journey of Stories, Inspiration, and Ideas"];
+  let i = 0;
+  let j = 0;
+  let currentWord = "";
+  let isDeleting = false;
+
+  function type() {
+    currentWord = words[0];
+    if (isDeleting) {
+      document.getElementById("typewriter").textContent = currentWord.substring(0, j - 1);
+      j--;
+      if (j == 0) {
+        isDeleting = false;
+        setTimeout(type, 500); // Pause before adding text
+      } else {
+        setTimeout(type, 50);
+      }
+    } else {
+      document.getElementById("typewriter").textContent = currentWord.substring(0, j + 1);
+      j++;
+      if (j == currentWord.length) {
+        isDeleting = true;
+        setTimeout(type, 1500); // Pause before deleting text
+      } else {
+        setTimeout(type, 50);
+      }
+    }
+  }
+
+  type();
+});
+</script>
+
+<!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/66e40506ea492f34bc130878/1i7lb78hn';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+
+
+{% endblock %}

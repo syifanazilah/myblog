@@ -1,0 +1,20 @@
+{% extends "blog/master.html" %}
+
+{% block title %}
+  Delete Confirmation
+{% endblock %}
+
+
+{% block content %}
+
+<div class="max-w-4xl mx-auto mt-10 mb-10 p-6 bg-gradient-to-b from-white via-gray-100 to-gray-200 shadow-xl rounded-lg text-center">
+    <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-5">Delete Blog?</h1>
+    <p class="mb-5">Are you sure want to delete "{{ post.title }}"?</p>
+    <form method="POST" action="{% url 'post_delete' post.id %}">
+      {% csrf_token %}
+      <button type="submit" class="px-4 py-2 bg-green-500 text-white font-normal rounded-lg shadow-lg hover:bg-green-600 transition ease-in-out duration-300 ">Yes, sure</button>
+      <a href="{% url 'post_list' %}" class="px-4 py-2 bg-red-500 text-white font-normal rounded-lg shadow-lg hover:bg-red-600 transition ease-in-out duration-300">No</a>
+  </form>  
+</div>
+  
+{% endblock %}
